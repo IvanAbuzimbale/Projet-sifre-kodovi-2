@@ -28,42 +28,42 @@ OAuth protokol relativno je novi protokol te se njegovo korištenje sve više po
 
 ## Ključni koncepti OAuth 1.0
 1. **Uloge:**
-    1. Korisnici - Osoba koja posjeduje podatke i može odobriti pristup njima.
-    2. Klijent (potrošač) - Aplikacija koja traži pristup podacima korisnika.
-    3. Pružatelj usluga - Poslužitelj koji ugošćuje korisničke podatke i sposoban je prihvatiti i odgovoriti na zahtjeve zaštićenih resursa pomoću pristupnih tokena.
+    - Korisnici - Osoba koja posjeduje podatke i može odobriti pristup njima.
+    - Klijent (potrošač) - Aplikacija koja traži pristup podacima korisnika.
+    - Pružatelj usluga - Poslužitelj koji ugošćuje korisničke podatke i sposoban je prihvatiti i odgovoriti na zahtjeve zaštićenih resursa pomoću pristupnih tokena.
 2. **Tokeni:**
-    1. Token zahtjeva - Privremena vjerodajnica koju koristi klijent za dobivanje autorizacije od vlasnika resursa.
-    2. Pristupni token - Token koji koristi klijent za pristup podacima vlasnika resursa. Dobiva se nakon što korisnik autorizira token zahtjeva.
+    - Token zahtjeva - Privremena vjerodajnica koju koristi klijent za dobivanje autorizacije od vlasnika resursa.
+    - Pristupni token - Token koji koristi klijent za pristup podacima vlasnika resursa. Dobiva se nakon što korisnik autorizira token zahtjeva.
 3. **Autorizacija u tri koraka:**
-    1. Dobivanje tokena zahtjeva: Klijent traži token zahtjeva od pružatelja usluge. Zahtjev se potpisuje korištenjem vjerodajnica klijenta.
-    2. Autorizacija tokena zahtjeva: Korisnik autorizira token zahtjeva obično putem korisničkog sučelja koje pruža davatelj usluge.
-    3. Razmjena tokena zahtjeva za token pristupa: Nakon što korisnik autorizira token zahtjeva klijent ga mijenja za token pristupa. Ovaj se token zatim može koristiti za izradu provjerenih API zahtjeva u ime korisnika.
+    - Dobivanje tokena zahtjeva: Klijent traži token zahtjeva od pružatelja usluge. Zahtjev se potpisuje korištenjem vjerodajnica klijenta.
+    - Autorizacija tokena zahtjeva: Korisnik autorizira token zahtjeva obično putem korisničkog sučelja koje pruža davatelj usluge.
+    - Razmjena tokena zahtjeva za token pristupa: Nakon što korisnik autorizira token zahtjeva klijent ga mijenja za token pristupa. Ovaj se token zatim može koristiti za izradu provjerenih API zahtjeva u ime korisnika.
 4. **Potpisi:**
-    1. OAuth 1.0 koristi potpise kako bi potvrdio da zahtjev nije neovlašteno mijenjan i kako bi osigurao da zahtjev dolazi iz ovlaštenog izvora. HMAC-SHA1, RSA-SHA1 i PLAINTEXT uobičajene su metode potpisa koje se koriste.
+    - OAuth 1.0 koristi potpise kako bi potvrdio da zahtjev nije neovlašteno mijenjan i kako bi osigurao da zahtjev dolazi iz ovlaštenog izvora. HMAC-SHA1, RSA-SHA1 i PLAINTEXT uobičajene su metode potpisa koje se koriste.
 5. **Komunikacija:**
-    1. OAuth 1.0 zahtijeva više koraka preusmjeravanja između klijenta i pružatelja usluge. Komunikacija obično uključuje preusmjeravanje korisničkog preglednika između davatelja usluge i klijentske aplikacije.
+    - OAuth 1.0 zahtijeva više koraka preusmjeravanja između klijenta i pružatelja usluge. Komunikacija obično uključuje preusmjeravanje korisničkog preglednika između davatelja usluge i klijentske aplikacije.
 
 ## Ključni koncepti OAuth 2.0
 1. **Uloge:**
-    1. Korisnici - Korisnik koji autorizira aplikaciju za pristup njihovim resursima.
-    2. Klijent - Aplikacija koja zahtijeva pristup podacima vlasnika resursa.
-    3. Autorizacijski server - Poslužitelj izdaje pristupne tokene klijentu nakon uspješne provjere autentičnosti vlasnika resursa i dobivanja autorizacije.
-    4. Poslužitelj resursa (Resource Server) - Poslužitelj na kojem se nalaze zaštićeni resursi sposoban prihvatiti zahtjeve i odgovoriti na njih koristeći pristupne tokene.
+    - Korisnici - Korisnik koji autorizira aplikaciju za pristup njihovim resursima.
+    - Klijent - Aplikacija koja zahtijeva pristup podacima vlasnika resursa.
+    - Autorizacijski server - Poslužitelj izdaje pristupne tokene klijentu nakon uspješne provjere autentičnosti vlasnika resursa i dobivanja autorizacije.
+    - Poslužitelj resursa (Resource Server) - Poslužitelj na kojem se nalaze zaštićeni resursi sposoban prihvatiti zahtjeve i odgovoriti na njih koristeći pristupne tokene.
 2. **Tokeni:**
-    1. Tokeni pristupa - Token koji klijent koristi za upućivanje provjerenih zahtjeva poslužitelju resursa.
-    2. Token za osvježivanje (Refresh Token) - Token koji se koristi za dobivanje novog pristupnog tokena bez potrebe da vlasnik resursa ponovno autorizira klijenta.
+    - Tokeni pristupa - Token koji klijent koristi za upućivanje provjerenih zahtjeva poslužitelju resursa.
+    - Token za osvježivanje (Refresh Token) - Token koji se koristi za dobivanje novog pristupnog tokena bez potrebe da vlasnik resursa ponovno autorizira klijenta.
 3. **Vrste odobrenja - OAuth 2.0 definira nekoliko vrsta odobrenja autorizacije za različite slučajeve upotrebe:**
-    1. Dobivanje autorizacijskog koda - Koristi se u aplikacijama na strani poslužitelja. Klijent dobiva autorizacijski kod koji se zatim mijenja za pristupni token.
-    2. Implicitna dodjela - Koristi se u aplikacijama na strani klijenta (npr. aplikacije s jednom stranicom). Pristupni token vraća se izravno bez posrednog autorizacijskog koda.
-    3. Dodjeljivanje vjerodajnice za lozinku vlasnika resursa - Koristi se kada klijent ima odnos povjerenja s vlasnikom resursa kao što su aplikacije prve strane. Klijent prikuplja korisničko ime i lozinku vlasnika resursa kako bi dobio pristupni token.
-    4. Dodjela vjerodajnica klijenta - Koristi se za komunikaciju machine-to-machine. Klijent koristi vlastite vjerodajnice za dobivanje pristupnog tokena.
-    5. Dodjela tokena osvježavanja - Koristi se za dobivanje novog pristupnog tokena pomoću tokena za osvježavanje.
+    - Dobivanje autorizacijskog koda - Koristi se u aplikacijama na strani poslužitelja. Klijent dobiva autorizacijski kod koji se zatim mijenja za pristupni token.
+    - Implicitna dodjela - Koristi se u aplikacijama na strani klijenta (npr. aplikacije s jednom stranicom). Pristupni token vraća se izravno bez posrednog autorizacijskog koda.
+    - Dodjeljivanje vjerodajnice za lozinku vlasnika resursa - Koristi se kada klijent ima odnos povjerenja s vlasnikom resursa kao što su aplikacije prve strane. Klijent prikuplja korisničko ime i lozinku vlasnika resursa kako bi dobio pristupni token.
+    - Dodjela vjerodajnica klijenta - Koristi se za komunikaciju machine-to-machine. Klijent koristi vlastite vjerodajnice za dobivanje pristupnog tokena.
+    - Dodjela tokena osvježavanja - Koristi se za dobivanje novog pristupnog tokena pomoću tokena za osvježavanje.
 4. **Krajnje točke:**
-    1. Krajnja točka autorizacije - Gdje vlasnik resursa autentificira i odobrava autorizaciju klijentu.
-    2. Krajnja točka tokena - Gdje klijent razmjenjuje odobrenje autorizacije za token pristupa i token za osvježavanje.
-    3. Krajnja točka preusmjeravanja - Klijentska krajnja točka na koju autorizacijski poslužitelj šalje korisnika nakon odobravanja ili odbijanja autorizacije.
+    - Krajnja točka autorizacije - Gdje vlasnik resursa autentificira i odobrava autorizaciju klijentu.
+    - Krajnja točka tokena - Gdje klijent razmjenjuje odobrenje autorizacije za token pristupa i token za osvježavanje.
+    - Krajnja točka preusmjeravanja - Klijentska krajnja točka na koju autorizacijski poslužitelj šalje korisnika nakon odobravanja ili odbijanja autorizacije.
 5. **Opseg:**
-    1. Opsezi definiraju specifične dozvole koje klijent zahtijeva. Ograničavaju pristup dodijeljen pristupnim tokenom. Na primjer, opseg može navesti pristup samo za čitanje korisničkom profilu.
+    - Opsezi definiraju specifične dozvole koje klijent zahtijeva. Ograničavaju pristup dodijeljen pristupnim tokenom. Na primjer, opseg može navesti pristup samo za čitanje korisničkom profilu.
 
 ## OAuth 1.0
 Razvoj OAuth protokola započela je grupa web developera za Internet servise koji su željeli riješiti uobičajeni problem delegiranja i pristupanja zaštićenim resursima. Prva stabilna verzija OAuth protokola pojavila se 2007. godine, a 2009. godine bila je revizija te se koristi verzija OAuth 1.0a. OAuth je u tradicionalnu klijent-server arhitekturu dodao novu ulogu: vlasnik resursa, klijent i poslužitelj resursa. Korištenjem tokena za pristup resursima postignut je sigurniji način autentifikacije i autorizacije.
